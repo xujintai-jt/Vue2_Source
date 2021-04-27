@@ -6,7 +6,7 @@ export default function observe(value) {
   }
 
   var ob;
-  if (value.__ob__ !== undefined) {
+  if (typeof value.__ob__ !== 'undefined') {
     ob = __ob__;
   } else {
     ob = new observer(value);
