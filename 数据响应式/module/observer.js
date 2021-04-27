@@ -1,14 +1,11 @@
 import defineReactive from "./defineReactive.js"
 import arrayMethods from "./array.js"
+import {def} from "./utils"
 
 export default class observer {
   constructor(value) {
     //为observe的对象添加key为__ob__、value为observer实例的属性。
-    Object.defineProperty(value, "__ob__", {
-      value: this,
-      configurable: true,
-      enumerable:false
-    })
+    def(value,"__ob__",this,false)
     
     if (value instanceof Array) {
       Object.setPrototypeOf(value,arrayMethods)
