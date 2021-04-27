@@ -9,6 +9,7 @@ const obj = {
     adidas: "Yeezy",
   },
   name: "小明",
+  arr:[1,2,3]
 };
 
 
@@ -20,3 +21,7 @@ obj.sneakers.nike.shoesname1
 obj.sneakers.nike.shoesname2 = "air force 1"
 console.log(obj.sneakers.nike.shoesname2);
 console.log(obj.__ob__.walk);
+console.log(obj);
+obj.arr[0]=100
+obj.arr.push()
+console.log(obj.arr);

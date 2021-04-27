@@ -7,6 +7,7 @@ const obj = {
     adidas: "Yeezy",
   },
   name: "小明",
+  arr:[2,4,6,8,9]
 };
 
 function defineReactive(targetObj, key, value) {
@@ -67,3 +68,5 @@ obj.sneakers.nike.shoesname1
 obj.sneakers.nike.shoesname2 = "air force 1"
 console.log(obj.sneakers.nike.shoesname2);
 console.log(obj.__ob__.walk);
+obj.arr[0] = 99
+console.log(obj.arr[0]); 

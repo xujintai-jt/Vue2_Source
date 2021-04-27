@@ -10,6 +10,26 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./module/Observer.js":
+/*!****************************!*\
+  !*** ./module/Observer.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ observer)\n/* harmony export */ });\n/* harmony import */ var _defineReactive_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defineReactive.js */ \"./module/defineReactive.js\");\n/* harmony import */ var _array_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./array.js */ \"./module/array.js\");\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\n\n\n\nvar observer = /*#__PURE__*/function () {\n  function observer(value) {\n    _classCallCheck(this, observer);\n\n    //为observe的对象添加key为__ob__、value为observer实例的属性。\n    Object.defineProperty(value, \"__ob__\", {\n      value: this,\n      configurable: true,\n      enumerable: false\n    });\n\n    if (value instanceof Array) {\n      Object.setPrototypeOf(value, _array_js__WEBPACK_IMPORTED_MODULE_1__.default);\n    } else {\n      this.walk(value);\n    }\n  }\n\n  _createClass(observer, [{\n    key: \"walk\",\n    value: function walk(targetObj) {\n      for (var key in targetObj) {\n        (0,_defineReactive_js__WEBPACK_IMPORTED_MODULE_0__.default)(targetObj, key, targetObj[key]);\n      }\n    }\n  }]);\n\n  return observer;\n}();\n\n\n\n//# sourceURL=webpack:///./module/Observer.js?");
+
+/***/ }),
+
+/***/ "./module/array.js":
+/*!*************************!*\
+  !*** ./module/array.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n//使arrayMethods对象的__proto__指向Array.prototype\nvar arrayMethods = Object.setPrototypeOf({}, Array.prototype);\nvar ChangeMethods = [\"push\", \"pop\", \"unshift\", \"shift\", \"sort\", \"splice\", \"reverse\"];\nconsole.log(1);\nChangeMethods.forEach(function (item) {\n  arrayMethods[item] = function () {\n    console.log(\"我是被改写的数组方法\");\n  };\n});\nconsole.log(arrayMethods);\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (arrayMethods);\n\n//# sourceURL=webpack:///./module/array.js?");
+
+/***/ }),
+
 /***/ "./module/defineReactive.js":
 /*!**********************************!*\
   !*** ./module/defineReactive.js ***!
@@ -26,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _observe_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./observe.js */ \"./module/observe.js\");\n\nvar obj = {\n  sneakers: {\n    nike: {\n      shoesname1: \"dunk SB\",\n      shoesname2: \"air jordan\"\n    },\n    adidas: \"Yeezy\"\n  },\n  name: \"小明\"\n};\n(0,_observe_js__WEBPACK_IMPORTED_MODULE_0__.default)(obj);\nobj.name;\nobj.sneakers.nike.shoesname1;\nobj.sneakers.nike.shoesname2 = \"air force 1\";\nconsole.log(obj.sneakers.nike.shoesname2);\nconsole.log(obj.__ob__.walk);\n\n//# sourceURL=webpack:///./module/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _observe_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./observe.js */ \"./module/observe.js\");\n\nvar obj = {\n  sneakers: {\n    nike: {\n      shoesname1: \"dunk SB\",\n      shoesname2: \"air jordan\"\n    },\n    adidas: \"Yeezy\"\n  },\n  name: \"小明\",\n  arr: [1, 2, 3]\n};\n(0,_observe_js__WEBPACK_IMPORTED_MODULE_0__.default)(obj);\nobj.name;\nobj.sneakers.nike.shoesname1;\nobj.sneakers.nike.shoesname2 = \"air force 1\";\nconsole.log(obj.sneakers.nike.shoesname2);\nconsole.log(obj.__ob__.walk);\nconsole.log(obj);\nobj.arr[0] = 100;\nobj.arr.push();\nconsole.log(obj.arr);\n\n//# sourceURL=webpack:///./module/index.js?");
 
 /***/ }),
 
@@ -36,17 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _obs
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ observe)\n/* harmony export */ });\n/* harmony import */ var _observer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./observer.js */ \"./module/observer.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\n\nfunction observe(value) {\n  if (_typeof(value) !== \"object\" || typeof value === \"null\") {\n    return value;\n  }\n\n  var ob;\n\n  if (value.__ob__ !== undefined) {\n    ob = __ob__;\n  } else {\n    ob = new _observer_js__WEBPACK_IMPORTED_MODULE_0__.default(value);\n  }\n\n  return ob;\n}\n\n//# sourceURL=webpack:///./module/observe.js?");
-
-/***/ }),
-
-/***/ "./module/observer.js":
-/*!****************************!*\
-  !*** ./module/observer.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ observer)\n/* harmony export */ });\n/* harmony import */ var _defineReactive_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defineReactive.js */ \"./module/defineReactive.js\");\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\n\n\nvar observer = /*#__PURE__*/function () {\n  function observer(value) {\n    _classCallCheck(this, observer);\n\n    //为observe的对象添加key为__ob__、value为observer实例的属性。\n    Object.defineProperty(value, \"__ob__\", {\n      value: this,\n      configurable: false,\n      enumerable: false\n    });\n    this.walk(value);\n  }\n\n  _createClass(observer, [{\n    key: \"walk\",\n    value: function walk(targetObj) {\n      for (var key in targetObj) {\n        (0,_defineReactive_js__WEBPACK_IMPORTED_MODULE_0__.default)(targetObj, key, targetObj[key]);\n      }\n    }\n  }]);\n\n  return observer;\n}();\n\n\n\n//# sourceURL=webpack:///./module/observer.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ observe)\n/* harmony export */ });\n/* harmony import */ var _Observer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Observer.js */ \"./module/Observer.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\n\nfunction observe(value) {\n  if (_typeof(value) !== \"object\" || typeof value === \"null\") {\n    return value;\n  }\n\n  var ob;\n\n  if (typeof value.__ob__ !== 'undefined') {\n    ob = __ob__;\n  } else {\n    ob = new _Observer_js__WEBPACK_IMPORTED_MODULE_0__.default(value);\n  }\n\n  return ob;\n}\n\n//# sourceURL=webpack:///./module/observe.js?");
 
 /***/ })
 

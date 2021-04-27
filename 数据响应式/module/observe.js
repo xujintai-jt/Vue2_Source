@@ -1,4 +1,4 @@
-import observer from "./observer.js"
+import Observer from "./Observer.js"
 
 export default function observe(value) {
   if (typeof value !== "object" || typeof value === "null") {
@@ -9,7 +9,7 @@ export default function observe(value) {
   if (typeof value.__ob__ !== 'undefined') {
     ob = __ob__;
   } else {
-    ob = new observer(value);
+    ob = new Observer(value);
   }
   return ob;
 }
