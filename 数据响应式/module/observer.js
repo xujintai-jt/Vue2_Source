@@ -1,6 +1,7 @@
 import defineReactive from "./defineReactive.js"
 import arrayMethods from "./array.js"
 import {def} from "./utils"
+import observe from "./observe.js"
 
 export default class observer {
   constructor(value) {
@@ -8,7 +9,8 @@ export default class observer {
     def(value,"__ob__",this,false)
     
     if (value instanceof Array) {
-      Object.setPrototypeOf(value,arrayMethods)
+      Object.setPrototypeOf(value, arrayMethods)
+      this.arrayWalk(value)
     }
     else {
       this.walk(value)
@@ -18,6 +20,12 @@ export default class observer {
   walk(targetObj) {
     for (let key in targetObj) {
       defineReactive(targetObj,key,targetObj[key])
+    }
+  }
+
+  arrayWalk(targetArray) {
+    for (let i = 0; i < targetArray.length; i++){
+      observe(targetArray[i])
     }
   }
 }

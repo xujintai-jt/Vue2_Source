@@ -23,5 +23,9 @@ console.log(obj.sneakers.nike.shoesname2);
 console.log(obj.__ob__.walk);
 console.log(obj);
 obj.arr[0]=100
+obj.arr.push(9999)
+obj.arr.push({ a: 1 })
+obj.arr.splice(2,1,{a:999})
+obj.arr.unshift({ b: 99 })
 obj.arr.push()
 console.log(obj.arr);

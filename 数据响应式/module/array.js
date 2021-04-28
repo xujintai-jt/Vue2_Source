@@ -1,4 +1,5 @@
 import { def } from "./utils";
+
 //使arrayMethods对象的__proto__指向Array.prototype
 const arrayMethods = Object.setPrototypeOf({}, Array.prototype);
 const ChangeMethods = [
@@ -20,8 +21,34 @@ ChangeMethods.forEach((item) => {
     arrayMethods,
     item,
     function () {
-      originalMethods.apply(this, arguments);
+      //恢复数组之前的功能
+      const result = originalMethods.apply(this, arguments);
+      const ob = this.__ob__
+
+      //定义添加的数组项
+      let inserterd = [];
+
+      switch (item) {
+        case "push":
+          inserterd = [...arguments];
+          break;
+        case "splice":
+          //splice的格式是(index,删除目标,增加目标...)
+          inserterd = [...arguments].slice(2);
+          break;
+        case "unshift":
+          inserterd = [...arguments];
+          break;
+      }
+
+      if (inserterd.length>0) {
+        ob.arrayWalk(inserterd)
+      }
+
       console.log("我是被改写的数组方法");
+
+      //恢复数组之前的功能(返回值)
+      return result;
     },
     false
   );
