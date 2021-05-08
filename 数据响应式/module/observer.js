@@ -10,6 +10,9 @@ export default class observer {
     
     if (value instanceof Array) {
       Object.setPrototypeOf(value, arrayMethods)
+      //改变数组对象的原型，使value.__proto__===arrayMethods,而arrayMethods.__proto__===Array.prototype
+      //arrayMethods对象中含有已改写的七种数组方法。当value调用七种数组方法时，会调用arrayMethods对象中的方法；
+      //当value调用非七种数组方法时，会通过原型链访问Array.prototype中的数组方法。
       this.arrayWalk(value)
     }
     else {

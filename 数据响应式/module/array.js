@@ -16,18 +16,20 @@ ChangeMethods.forEach((item) => {
   //保存数组原始方法
   const originalMethods = arrayMethods[item];
 
-  //改写数组方法
+  //将需要改写的数组方法定义到arrayMethods上
   def(
     arrayMethods,
     item,
+    //闭包函数：引用了originalMethods
     function () {
-      //恢复数组之前的功能
+      //执行数组之前的功能
       const result = originalMethods.apply(this, arguments);
       const ob = this.__ob__
 
       //定义添加的数组项
       let inserterd = [];
 
+      //三种会添加项的数组方法
       switch (item) {
         case "push":
           inserterd = [...arguments];
@@ -41,13 +43,14 @@ ChangeMethods.forEach((item) => {
           break;
       }
 
-      if (inserterd.length>0) {
+      if (inserterd.length > 0) {
+        //将添加的项进行observe
         ob.arrayWalk(inserterd)
       }
 
       console.log("我是被改写的数组方法");
 
-      //恢复数组之前的功能(返回值)
+      //执行数组之前的功能(返回值)
       return result;
     },
     false
