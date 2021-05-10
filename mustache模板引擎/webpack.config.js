@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  //使用后js文件热更新、html文件不会
   devServer: {
     //根目录
     contentBase: path.join(__dirname, "dist"),
