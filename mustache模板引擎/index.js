@@ -6,21 +6,20 @@ window.TemplateEngine = {
     let end = "}}";
     let scanner = new Scanner(template);
 
-    while (scanner.tail !== "") {
-      //若tail中不存在"{{"和"}}"，则scanUtil()
-      const flag = scanner.tail.indexOf(start) < 0 && scanner.tail.indexOf(end) < 0;
-      if (flag) {
-        const text = scanner.scanUtil();
-        arr.push(["text", text]);
-        continue;
-      }
-     //存在"{{"和"}}"，则scan一套"{{"和"}}"
+    while (scanner.pos !== scanner.templateStr.length) {
+      //存在"{{"和"}}"，则scan一套"{{"和"}}"
       const text = scanner.scanUtil(start);
-      arr.push(["text", text]);
-      scanner.scan(start);
+      //如果不是空字符串，则添加
+      if (text) {
+        arr.push(["text", text]);
+        scanner.scan(start);
+      }
+
       const name = scanner.scanUtil(end);
-      arr.push(["name", name]);
-      scanner.scan(end);
+      if (name) {
+        arr.push(["name", name]);
+        scanner.scan(end);
+      }
     }
 
     console.log(arr);

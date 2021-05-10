@@ -17,12 +17,7 @@ export default class Scanner {
   //让指针进行扫描，遇到stopTag结束，并且返回结束之前路过的文字。
   scanUtil(stopTag) {
     const pos_backup = this.pos
-    if (!stopTag) {
-      this.tail=""
-      return this.templateStr.substring(pos_backup)
-    }
-
-    while (this.tail.indexOf(stopTag) !== 0) {
+    while (this.tail.indexOf(stopTag) !== 0 && this.pos < this.templateStr.length) {
       this.pos++;
       this.tail = this.templateStr.substring(this.pos);
     }
