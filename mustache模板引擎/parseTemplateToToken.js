@@ -1,4 +1,5 @@
 import Scanner from "./Scaner";
+import nextTokens from "./nextTokens"
 
 export default function parseTemplateToToken(template) {
   let tokens = [];
@@ -28,6 +29,7 @@ export default function parseTemplateToToken(template) {
     //跨过"}}"大括号
     scanner.scan("}}");
   }
-
-  return tokens;
+  
+  //返回折叠处理的tokens
+  return nextTokens(tokens);
 }

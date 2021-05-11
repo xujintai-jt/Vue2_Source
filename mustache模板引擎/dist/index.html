@@ -2,7 +2,7 @@
  * @Author: xujintai
  * @Date: 2021-05-08 20:43:17
  * @LastEditors: xujintai
- * @LastEditTime: 2021-05-10 20:27:45
+ * @LastEditTime: 2021-05-11 14:50:16
  * @Description: file content
  * @FilePath: \vue2-source\mustache模板引擎\dist\index.html
 -->
@@ -26,7 +26,11 @@
     const template =
       `{{#student}}
     <h1>姓名为{{name}}</h1> 
-    <h2>年龄为{{age}}</h2>
+    {{#eat}}
+    <h2>水果为{{fruit}}</h2>
+    <h2>肉为{{meat}}</h2>
+    {{/eat}} 
+       <h2>年龄为{{age}}</h2>
     {{/student}}`
 
     TemplateEngine.render(template)
