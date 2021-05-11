@@ -1,4 +1,4 @@
-import Scanner from "./Scaner";
+import Scanner from "./Scanner";
 import nextTokens from "./nextTokens"
 
 export default function parseTemplateToToken(template) {
