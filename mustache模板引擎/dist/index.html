@@ -2,7 +2,7 @@
  * @Author: xujintai
  * @Date: 2021-05-08 20:43:17
  * @LastEditors: xujintai
- * @LastEditTime: 2021-05-13 14:52:36
+ * @LastEditTime: 2021-05-13 15:46:04
  * @Description: file content
  * @FilePath: \vue2-source\mustache模板引擎\dist\index.html
 -->
@@ -68,12 +68,11 @@
     }
     TemplateEngine.render(template, obj)
 
-    // const template = '<h1>姓名为{{name1}}</h1> <h1>姓名为{{name2}}</h1>'
-    // const data = {
-    //   name1: "小明",
-    //   name2: "小刚"
-    // }
-    // TemplateEngine.render(template, data)
+    const template2 = '{{#eat}}<li>{{.}}</li>{{/eat}}'
+    const data = {
+      eat: ["牛肉", "猪肉", ]
+    }
+    TemplateEngine.render(template2, data)
   </script>
 
 </body>
