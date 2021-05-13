@@ -7,5 +7,6 @@ window.TemplateEngine = {
     let tokens = parseTemplateToToken(template)
     let resDOM = renderTemplate(tokens, data)
     console.log(resDOM);
+    return resDOM
   }
 }

@@ -2,7 +2,7 @@
  * @Author: xujintai
  * @Date: 2021-05-08 20:43:17
  * @LastEditors: xujintai
- * @LastEditTime: 2021-05-13 15:46:04
+ * @LastEditTime: 2021-05-13 15:56:49
  * @Description: file content
  * @FilePath: \vue2-source\mustache模板引擎\dist\index.html
 -->
@@ -14,22 +14,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .nameStyle {
+      background-color: pink;
+    }
+  </style>
 </head>
 
 <body>
-  <div>
-    <h1>hello world</h1>
+  <div id="container">
   </div>
   <script src="http://localhost:9000/xuni/bundle.js"></script>
   <script>
     const template =
       `{{#student}}
-    <h1>姓名为{{name}}</h1> 
+    <h2 class="nameStyle">姓名为{{name}}</h2> 
     {{#eat}}
-    <h2>水果为{{fruit}}</h2>
-    <h2>肉为{{meat}}</h2>
+    <ul>
+    <li>水果为{{fruit}}</li>
+    <li>肉为{{meat}}</li>
+  </ul>
     {{/eat}} 
-       <h2>年龄为{{Age.age}}</h2>
+       <h3>年龄为{{Age.age}}</h3>
     {{/student}}`
 
     const student = [{
@@ -66,13 +72,16 @@
     let obj = {
       student
     }
-    TemplateEngine.render(template, obj)
+    const res1 = TemplateEngine.render(template, obj)
 
     const template2 = '{{#eat}}<li>{{.}}</li>{{/eat}}'
     const data = {
       eat: ["牛肉", "猪肉", ]
     }
-    TemplateEngine.render(template2, data)
+    const res2 = TemplateEngine.render(template2, data)
+
+    const container = document.getElementById("container")
+    container.innerHTML = res1
   </script>
 
 </body>
