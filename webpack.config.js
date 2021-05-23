@@ -1,13 +1,11 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.js",
+  mode:"development",
+  entry: './index.js',
   output: {
-    //虚拟打包路径
-    // publicPath: "/xuni/",
-    path:path.resolve(__dirname,"dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
   //使用后js文件热更新、html文件不会
   devServer: {
@@ -15,5 +13,7 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 9000,
-  },
+    //虚拟打包路径
+    publicPath:'/xuni/'
+  }
 };
