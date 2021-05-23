@@ -5,8 +5,8 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     //虚拟打包路径
-    // publicPath: "/xuni/",
-    path:path.resolve(__dirname,"dist"),
+    publicPath: "/xuni/",
+    // path:path.resolve(__dirname,"dist"),
     filename: "bundle.js",
   },
   //使用后js文件热更新、html文件不会
@@ -16,4 +16,5 @@ module.exports = {
     compress: true,
     port: 9000,
   },
+  devtool: 'source-map',
 };
